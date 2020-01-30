@@ -1,6 +1,25 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import os
+from flask_login import login_user, logout_user, login_required,LoginManager, UserMixin
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+ENV = 'dev'
+
+if ENV == 'dev':
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://antony:pass1234@localhost/Signup'
+else:
+    app.debug = False
+    app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://weecywyhmtjnvd:1a75f2ed2f8d8cd557420b1ec6d11bb7c896cb27d76c2e48f5e6e35201498961@ec2-52-203-98-126.compute-1.amazonaws.com:5432/d8ndro69ratulc'
+
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+SECRET_KEY = os.urandom(24)
+
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+UPLOAD_FOLDER = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+ "/Portfolio/static/images"
 
 
 @app.route('/')
@@ -9,9 +28,16 @@ def index():
 
 
 # user authentication
-@app.route('/signup')
+@app.route('/signup', methods=['POST','GET'])
 def signup():
-    return render_template('signup.html')
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['username']
+
+        # check user exists
+        print(username,email,password)
+    return render_template('signup.html', title="Home")
 
 
 @app.route('/login')
@@ -40,7 +66,7 @@ def projects():
 
 
 @app.route('/projects/detail/<int:project_id>')
-def projects(project_id):
+def projects_detail(project_id):
     return render_template('projects_detail.html')
 
 
