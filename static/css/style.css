@@ -3,6 +3,10 @@
 
 /*css variables*/
 @import url('./partials/_variables.css');
+
+/*Global css*/
+@import url('./partials/_globals.css');
+
 /*start navigation*/
 .header-area .main-menu .navbar .navbar-brand{
     padding: 0 2rem 0 5rem;
