@@ -142,7 +142,6 @@ def dashboard_update():
 @app.route('/about')
 def about():
     user = User.query.get(1)
-    print(user.technical_experience)
     return render_template('about.html', title='Antony Injila | About page', user=user)
 
 # Projects urls and views
