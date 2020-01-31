@@ -1,5 +1,5 @@
 from flask import (Flask, render_template,url_for, request,redirect,flash)
-from flask_login import login_user, logout_user, login_required,LoginManager, UserMixin
+from flask_login import login_user, logout_user, login_required,LoginManager, UserMixin,current_user
 from datetime import datetime
 
 import os

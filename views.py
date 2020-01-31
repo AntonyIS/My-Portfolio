@@ -36,6 +36,8 @@ def signup():
 
 @app.route('/login', methods=['POST','GET'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
@@ -43,9 +45,13 @@ def login():
         # check user exists
         if db.session.query(User).filter(User.email == email).count() > 0:
             user = User.query.filter_by(email=email).first()
-            login_user(user)
-            message = "User with the email exists, try again"
-            return redirect(url_for('index'))
+            if user.password == password:
+                login_user(user)
+                message = "User with the email exists, try again"
+                return redirect(url_for('index'))
+            else:
+                message = "Password did not match"
+                return redirect(url_for('login'))
     return render_template('login.html')
 
 
