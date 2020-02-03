@@ -11,7 +11,7 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index_1.html')
 
 
 # user authentication
@@ -36,31 +36,26 @@ def signup():
 
 @app.route('/login', methods=['POST','GET'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
+    # if current_user.is_authenticated:
+    #     return redirect(url_for('index'))
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-
         # check user exists
-        if db.session.query(User).filter(User.email == email).count() > 0:
-            user = User.query.filter_by(email=email).first()
-            if user.password == password:
-                login_user(user)
-                message = "User with the email exists, try again"
-                return redirect(url_for('index'))
-            else:
-                message = "Password did not match"
-                return redirect(url_for('login'))
+        if email == 'antonyshikubu@gmail.com' and password == 'pass1234':
+            user = User.query.get(1)
+            login_user(user)
+            return redirect(url_for('index'))
+        return redirect(url_for('login'))
     return render_template('login.html')
 
 
 @app.route("/logout")
-@login_required
+
 def logout():
     logout_user()
     flash('logout successful', 'alert alert-success')
-    return redirect('/')
+    return redirect(url_for('index'))
 
 
 @app.route('/dashboard', methods=['GET','POST'])

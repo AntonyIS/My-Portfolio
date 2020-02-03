@@ -1,0 +1,63 @@
+body{
+    color: white;
+    font-family: sans-serif,monospace;
+    background-color: rgba(255, 182, 174, 0.09);
+}
+/*Start top index section*/
+#index-top{
+    background-image: url('/static/images/banners/banner8.jpg');
+    background-position: left center;
+    text-align: left;
+    padding-top: 80px;
+    padding-bottom:80px;
+    opacity: 0.8;
+
+
+}
+#index-top .jumbotron{
+    background-color: transparent;
+    border: 2px #d9534f solid;
+    border-radius: 8px ;
+    font-family: monospace;
+    font-weight: bold;
+}
+#index-top .jumbotron span{
+    display: block;
+    text-transform: uppercase;
+    font-weight: bold;
+    color:#d9534f;
+}
+#index-top i{
+    margin-top: 10px;
+    color: white;
+    margin-left: 1.5rem;
+}
+/*End top index section*/
+
+
+/*Start bottom-top index section*/
+#index-top-bottom{
+    color:#d9534f;
+    padding: 30px;
+}
+#ndex-top-bottom ,#container{
+
+    padding-top: 60px;
+    text-align: left;
+}
+#ndex-top-bottom.img-section ,img{
+    border :3px solid #d9534f;
+    border-radius: 8px ;
+}
+
+#programming{
+    background-color:  #d9534f;
+}
+
+/*End bottom-topindex section*/
+/*Start footer section*/
+#footer{
+    height: 20vh;
+    background-color:  #d9534f;
+}
+/*End footer section*/
