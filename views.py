@@ -13,6 +13,9 @@ def load_user(user_id):
 def index():
     return render_template('index_1.html')
 
+@app.route('/feedback', methods=['POST', 'GET'])
+def feedback():
+    return render_template('feedback.html', title='Antony Injila | 404')
 
 # user authentication
 @app.route('/signup', methods=['POST','GET'])

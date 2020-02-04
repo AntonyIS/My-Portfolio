@@ -41,6 +41,11 @@ body{
     font-family: monospace;
     font-weight: bold;
 }
+#index-top #author{
+     text-transform:initial;
+    color: white;
+    display: inline;
+}
 #index-top .jumbotron span{
     display: block;
     text-transform: uppercase;
@@ -102,6 +107,7 @@ body{
     color: red;
     list-style-type: none;
 
+
 }
 #footer .footer-links a{
     text-decoration: none;
@@ -119,3 +125,22 @@ body{
     color: black;
 }
 /*End footer section*/
+
+
+
+/*Start feedback section*/
+#feedback{
+    background-image: url('/static/images/banners/banner8.jpg');
+    background-color: red;
+    padding-top:5rem;
+    padding-bottom:5rem;
+}
+#feedback .jumbotron{
+    background-color: transparent;
+    border:1px solid #d9534f;
+    border-radius: 8px;
+}
+#feedback .jumbotron:hover{
+    border:1px solid white
+}
+/*End feedback section*/
