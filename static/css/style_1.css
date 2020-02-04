@@ -149,3 +149,45 @@ body{
     border:1px solid white
 }
 /*End feedback section*/
+
+
+/*Start tech stack section*/
+#techStack{
+    background-color: rgba(0, 0, 0, 0.63);
+    padding-top: 5rem;
+    padding-bottom: 6rem;
+    color: white ;
+}
+#techStack .card{
+    margin-top: 2rem;
+    padding-top: 1rem;
+    color: white;
+    background-color: transparent;
+    border: 1px solid  #d9534f;
+    border-radius: 8px;
+}
+#techStack .card:hover{
+    color:  #d9534f;
+    border: 1px solid  white;
+}
+#techStack .card i{
+ padding-left: 1rem;
+}
+#techStack .tech-title{
+    background-color:  #d9534f;
+    /*text-transform: uppercase;*/
+    text-align: center;
+    margin-top: 0;
+    padding: 10px;
+    font-family: monospace;
+    font-weight: bolder;
+}
+#techStack .tech-title:hover{
+    background-color: transparent;
+    border: 1px solid #d9534f;
+}
+#techStack a{
+    margin-top: 1.3rem;
+    text-align: center;
+}
+/*End tech stack section*/
