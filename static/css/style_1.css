@@ -220,4 +220,10 @@ body{
     margin-bottom: 25px;
     text-align: center;
 }
+#project-detail .jumbotron{
+    background-color: rgba(255, 50, 137, 0.09);
+}
+#project-detail .jumbotron:hover{
+    background-color: rgba(255, 182, 174, 0.09);
+}
 /*Start projects section*/
