@@ -94,7 +94,7 @@ body{
 #footer .footer-social-media, #footer .footer-links,#footer .footer-contact{
     border: 2px solid white;
     margin-top: 5rem;
-    padding: 3rem;
+    padding: 2.3rem;
     border-radius: 8px;
 }
 #footer .social-media{
@@ -102,7 +102,7 @@ body{
     padding: 3px;
 }
 #footer .footer-social-media i{
-    padding: 0.7rem;
+    padding: 0.5rem;
 }
 #footer .footer-social-media i:hover{
     color: black;
@@ -173,7 +173,7 @@ body{
 #techStack .card i{
  padding-left: 1rem;
 }
-#techStack .tech-title{
+#techStack .tech-title,#section-projects .tech-title{
     background-color:  #d9534f;
     /*text-transform: uppercase;*/
     text-align: center;
@@ -191,3 +191,33 @@ body{
     text-align: center;
 }
 /*End tech stack section*/
+
+
+/*Start projects section*/
+#section-projects{
+    padding-top: 2.5rem;
+    padding-bottom: 4rem;
+    color: #d9534f;
+}
+#secton-projects .row{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#section-projects .card{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: rgba(255, 182, 174, 0.09);
+    border: transparent;
+}
+#section-projects .card:hover{
+    background-color: rgba(255, 50, 137, 0.09);
+}
+#section-projects .tech-title{
+    color: white;
+}
+#project-detail{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+/*Start projects section*/
