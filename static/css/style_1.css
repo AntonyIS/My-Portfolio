@@ -5,9 +5,8 @@ body{
 }
 /*Start navigation*/
 .header-area .main-menu .nav-item .nav-link,.header-area .main-menu .navbar-brand{
-    font:normal 500 15px/2px var(--roboto);
     text-transform: uppercase;
-    padding: 1.2rem;
+    padding: 0.7rem;
     color:white;
 }
 .header-area .main-menu .navbar-brand{
@@ -16,10 +15,9 @@ body{
     font-weight: bolder;
 }
 .header-area .main-menu .nav-item .nav-link:hover,.header-area .main-menu .navbar-brand:hover{
-   color: black;
+    color: black;
     border: 1px solid black;
-    border-radius: 7px ;
-    padding: 1.0rem;
+    padding: 0.5rem;
     background-color: transparent;
 }
 /*End navigation*/
@@ -40,11 +38,18 @@ body{
     border-radius: 8px ;
     font-family: monospace;
     font-weight: bold;
+    font-size: 1.5rem;
 }
 #index-top #author{
      text-transform:initial;
     color: white;
     display: inline;
+}
+#index-top .jumbotron span.quotes{
+    font-size: 2rem;
+    display: inline;
+    line-height: 0;
+    padding: 5px;
 }
 #index-top .jumbotron span{
     display: block;
@@ -131,13 +136,13 @@ body{
 /*Start feedback section*/
 #feedback{
     background-image: url('/static/images/banners/banner8.jpg');
-    background-color: red;
+    background-color: #d9534f ;
     padding-top:5rem;
     padding-bottom:5rem;
 }
 #feedback .jumbotron{
     background-color: transparent;
-    border:1px solid #d9534f;
+    border:1px solid #d9534f ;
     border-radius: 8px;
 }
 #feedback .jumbotron:hover{
