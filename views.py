@@ -11,7 +11,7 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-    return render_template('index_1.html')
+    return render_template('index_1.html', title='Antony Injila | Home')
 
 @app.route('/404', methods=['POST', 'GET'])
 def feedback():
