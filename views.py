@@ -51,7 +51,7 @@ def login():
             login_user(user)
             return redirect(url_for('index'))
         return redirect(url_for('login'))
-    return render_template('login.html')
+    return render_template('login.html', title='Antony Injila | Login')
 
 @app.route("/logout")
 def logout():
