@@ -44,7 +44,7 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        print(email,password)
+
         # check user exists
         if email == 'antonyshikubu@gmail.com' and password == 'pass1234':
             user = User.query.get(1)
