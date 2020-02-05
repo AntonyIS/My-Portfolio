@@ -241,7 +241,7 @@ body{
     border: transparent;
 }
 #section-mentor .card:hover{
-    box-shadow: 2px 2px 2px 2px rgba(255, 50, 137, 0.16);
+    background-color: rgba(255, 50, 137, 0.09);
     /*border: 1px solid #c6c8ca;*/
 }
 #section-mentor .card img{
@@ -254,6 +254,7 @@ body{
 #section-mentor .mentor-title{
     text-align: center;
 }
+/*End section mentor*/
 
 /*#section-mentor .card h5{*/
 /*       float: left;*/
@@ -261,4 +262,27 @@ body{
 /*#section-mentor .card-body{*/
 /*    float: right;*/
 /*}*/
+/*Start section mentor*/
+#section-login{
+    margin-top: 10rem;
+    color:#d9534f;
+}
+#section-login fieldset{
+    border: 2px solid #d9534f;
+    margin-bottom: 6.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    line-height: 0;
+}
+#section-login input[type='email'],#section-login input[type='password']{
+    padding: 5px;
+    border: 1px solid #d9534f;
+    background-color: rgba(255, 182, 174, 0.09);;
+}
+#section-login label{
+    margin: 15px;
+}
+#section-login button{
+    margin-top: 25px;
+}
 /*End section mentor*/

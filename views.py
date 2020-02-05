@@ -44,6 +44,7 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
+        print(email,password)
         # check user exists
         if email == 'antonyshikubu@gmail.com' and password == 'pass1234':
             user = User.query.get(1)
@@ -52,9 +53,7 @@ def login():
         return redirect(url_for('login'))
     return render_template('login.html')
 
-
 @app.route("/logout")
-
 def logout():
     logout_user()
     flash('logout successful', 'alert alert-success')
