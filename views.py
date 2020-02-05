@@ -109,7 +109,7 @@ def dashboard_update():
         f = request.files['image-file']
         filename = secure_filename(f.filename)
 
-        print()
+
         if filename:
             # location for storing images: Portfolio/static/images/name_of_image
             image_file = "{}/{}/{}".format("static", "images/uploads", filename)
