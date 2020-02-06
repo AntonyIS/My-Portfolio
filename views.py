@@ -20,43 +20,42 @@ def feedback():
 # user authentication
 @app.route('/signup', methods=['POST','GET'])
 def signup():
+    error = None
     if request.method == 'POST':
         name = request.form['username']
         email = request.form['email']
         password = request.form['password']
 
+        print(name,email,password)
         # check user exists
         if db.session.query(User).filter(User.email == email).count() > 0:
-            message = "User with the email exists, try again"
-            return redirect('signup')
+            error = "User exists!! Login"
+            return render_template('signup.html', error=error)
         newUser = User(name=name,email=email,password=password)
         db.session.add(newUser)
         db.session.commit()
-        message = "Signup successful"
-        return render_template('login.html', message=message)
-    return render_template('signup.html', title="Home")
+        flash("Signup successful.Login",'alert alert-success')
+        return render_template('login.html')
+    return render_template('signup.html', title="Antony Injila | Signup", error=error)
 
 
 @app.route('/login', methods=['POST','GET'])
 def login():
-    # if current_user.is_authenticated:
-    #     return redirect(url_for('index'))
+    error = None
     if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-
-        # check user exists
-        if email == 'antonyshikubu@gmail.com' and password == 'pass1234':
+        if request.form['email'] != 'antonyshikubu@gmail.com' or request.form['password'] != 'pass1234':
+            error = 'Invalid Credentials'
+        else:
             user = User.query.get(1)
             login_user(user)
+            flash('Logging in was successfull','altert alert-success')
             return redirect(url_for('index'))
-        return redirect(url_for('login'))
-    return render_template('login.html', title='Antony Injila | Login')
+    return render_template('login.html', title='Antony Injila | Login', error=error)
 
 @app.route("/logout")
 def logout():
     logout_user()
-    flash('logout successful', 'alert alert-success')
+    flash('Logout successful', 'alert alert-success')
     return redirect(url_for('index'))
 
 

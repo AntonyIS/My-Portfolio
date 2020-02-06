@@ -23,8 +23,28 @@
             <i class="fab fa-python fa-2x"></i>
             <i class="fas fa-database fa-2x"></i>
             <i class="fab fa-github fa-2x"></i>
-
-
+        </div>
+        <div class="flask">
+                  <!--Message flashing-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-xl-4"></div>
+                    <div class="col-md-4 col-lg-4 col-xl-4">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                          {% if messages %}
+                            <div id="flash">
+                                 <ul class='flashes' style="list-style-type: none">
+                                {% for category, message in messages %}
+                                  <li class="{{ category }}" style="list-style: none">{{ message }}</li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                          {% endif %}
+                    {% endwith %}
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xl-4"></div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

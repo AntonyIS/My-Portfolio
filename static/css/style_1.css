@@ -263,26 +263,36 @@ body{
 /*    float: right;*/
 /*}*/
 /*Start section mentor*/
-#section-login{
+#section-auth{
     margin-top: 10rem;
     color:#d9534f;
 }
-#section-login fieldset{
+#section-auth fieldset{
     border: 2px solid #d9534f;
     margin-bottom: 6.5rem;
     padding: 1.5rem;
     text-align: center;
     line-height: 0;
 }
-#section-login input[type='email'],#section-login input[type='password']{
+#section-auth input[type='email'],#section-auth input[type='password'],#section-auth input[type='text']{
     padding: 5px;
     border: 1px solid #d9534f;
     background-color: rgba(255, 182, 174, 0.09);;
 }
-#section-login label{
+#section-auth label{
     margin: 15px;
 }
-#section-login button{
+#section-auth button{
     margin-top: 25px;
+}
+#section-auth .try{
+    margin: 1rem;
+}
+#section-auth span{
+    font-weight: bolder;
+}
+#section-auth a{
+    color: #d9534f;
+    margin: 7px;
 }
 /*End section mentor*/
