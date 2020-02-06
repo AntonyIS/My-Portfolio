@@ -26,7 +26,6 @@ def signup():
         email = request.form['email']
         password = request.form['password']
 
-        print(name,email,password)
         # check user exists
         if db.session.query(User).filter(User.email == email).count() > 0:
             error = "User exists!! Login"
