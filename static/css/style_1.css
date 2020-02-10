@@ -296,3 +296,39 @@ body{
     margin: 7px;
 }
 /*End section mentor*/
+
+/*start projects section*/
+#section-projects-info{
+      color: #d9534f;
+}
+#section-projects-info #top-project-section {
+    height: 60vh;
+    background-color: rgba(255, 47, 52, 0.41);
+    background-image: url("/static/images/banners/banner11.jpg");
+    background-position: right top;
+    padding-top: 110px;
+    color: #d9534f;
+    text-align: right;
+    padding-right:10rem
+
+}
+#section-projects-info #top-project-section .content-title{
+    font-family: sans-serif;
+    font-size: 2.5rem;
+}
+#section-projects-info #top-project-section p{
+    font-family: monospace;
+    font-size: 1.5rem;
+}
+#section-projects-info .container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#section-projects-info .container .tech-title{
+    padding: 5px;
+    background-color: #d9534f;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+}
+/*End projects section*/

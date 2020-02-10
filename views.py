@@ -42,12 +42,14 @@ def signup():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['email'] != 'antonyshikubu@gmail.com' or request.form['password'] != 'pass1234':
-            error = 'Invalid Credentials'
+        if request.form['email'] != 'antonyshikubu@gmail.com':
+            error = 'Invalid email'
+        elif request.form['password'] != 'pass1234':
+            error = 'Invalid password'
         else:
             user = User.query.get(1)
             login_user(user)
-            flash('Logging in was successfull','altert alert-success')
+            flash('Logging in was successful','altert alert-success')
             return redirect(url_for('index'))
     return render_template('login.html', title='Antony Injila | Login', error=error)
 
@@ -148,7 +150,7 @@ def about():
 # Projects urls and views
 @app.route('/projects')
 def projects():
-    return render_template('projects.html')
+    return render_template('projects.html', title = 'Antony Injila | Projects')
 
 
 @app.route('/projects/detail/<int:project_id>')

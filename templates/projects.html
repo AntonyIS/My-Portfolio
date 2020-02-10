@@ -1,4 +1,64 @@
 {% extends 'base.html' %}
 {% block title %}{{ title }}{% endblock title %}
 {% block body %}
+<section id="section-projects-info" >
+    <div id="top-project-section">
+        <div class="container-fluid">
+            <div class="content-detail">
+                <h3 class="content-title">Projects build with love</h3>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo, nulla!</p>
+                <button class="btn btn-danger">Learn more</button>
+            </div>
+        </div>
+    </div>
+   <div class="container">
+        <h3 class="tech-title">Latest projects</h3>
+        <div class="row">
+        <div class="col-md-3 col-lg-3 col-xl-3">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/banners/banner8.jpg') }}" alt="" class="img-fluid">
+                <div class="card-body">
+                    <h4 class="card-title">Python REST API</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    </p>
+                    <button class="btn btn-outline-danger">View</button>
+                </div>
+            </div>
+        </div>
+         <div class="col-md-3 col-lg-3 col-xl-3">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/banners/banner8.jpg') }}" alt="" class="img-fluid">
+                <div class="card-body">
+                    <h4 class="card-title">Python REST API</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    </p>
+                    <button class="btn btn-outline-danger">View</button>
+                </div>
+            </div>
+        </div>
+         <div class="col-md-3 col-lg-3 col-xl-3">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/banners/banner8.jpg') }}" alt="" class="img-fluid">
+                <div class="card-body">
+                    <h4 class="card-title">Python REST API</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    </p>
+                    <button class="btn btn-outline-danger">View</button>
+                </div>
+            </div>
+        </div>
+         <div class="col-md-3 col-lg-3 col-xl-3">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/banners/banner8.jpg') }}" alt="" class="img-fluid">
+                <div class="card-body">
+                    <h4 class="card-title">Python REST API</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    </p>
+                    <button class="btn btn-outline-danger">View</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
 {% endblock body %}
