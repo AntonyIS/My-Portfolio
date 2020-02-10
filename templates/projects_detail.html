@@ -1,4 +1,26 @@
 {% extends 'base.html' %}
 {% block title %}{{ title }}{% endblock title %}
 {% block body %}
+<section id="project-detail" style="background-image: url('{{ project.image_file }}')">
+    <div class="container-fluid">
+        <div class="detail-section">
+            <h3 class="content-title">{{ project.name }}</h3>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-xl-6">
+                <div class="card">
+                    <img src="/{{ project.image_file }}" alt="img-{{ project.name }}">
+                    <div class="card-body">
+                        <p>{{ project.description }}</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-6"></div>
+        </div>
+    </div>
+</section>
 {% endblock body %}
+http://127.0.0.1:5000/projects/detail/static/images/uploads/projects/gd.jpeg

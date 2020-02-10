@@ -31,8 +31,12 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(200), nullable=False)
+    github = db.Column(db.String(200), nullable=False)
+    youtube = db.Column(db.String(200), nullable=False)
+    comments = db.Column(db.Integer, nullable=False, default=0)
     image_file = db.Column(db.String(120), nullable=False, default='project.jpg')
     user_id = db.Column(db.ForeignKey(User.id))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
     def __repr__(self):
         return  "Project :{}".format(self.name)

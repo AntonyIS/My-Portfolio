@@ -148,14 +148,50 @@ def about():
     return render_template('about.html', title='Antony Injila | About page', user=user)
 
 # Projects urls and views
+@app.route('/projects/add', methods=['GET', 'POST'])
+def projects_add():
+    print(app.root_path)
+    if request.method == 'POST':
+        name  = request.form['name']
+        description  = request.form['description']
+        github  = request.form['github']
+        youtube  = request.form['youtube']
+
+
+        # grab imge file
+        f = request.files['image-file']
+        filename = secure_filename(f.filename)
+        # location for storing images: Portfolio/static/images/name_of_image
+        image_file = "{}/{}/{}".format("static", "images/uploads/projects", filename)
+        # image upload
+        f.save(os.path.join(UPLOAD_FOLDER + "/uploads/projects", filename))
+        new_project = Project(
+            name=name,
+            description =description,
+            github = github,
+            youtube = youtube,
+            image_file = image_file
+        )
+        db.session.add(new_project)
+        db.session.commit()
+        flash('{} added successfuly'.format(name), 'alert alert-success')
+        return redirect(url_for('projects'))
+    return render_template('projects.html', title='Antony Injila | Projects Add')
+
+
 @app.route('/projects')
 def projects():
-    return render_template('projects.html', title = 'Antony Injila | Projects')
+    error = None
+    projects = Project.query.all()
+    print(projects)
+    return render_template('projects.html', title = 'Antony Injila | Projects', projects=projects)
 
 
 @app.route('/projects/detail/<int:project_id>')
 def projects_detail(project_id):
-    return render_template('projects_detail.html')
+    project = Project.query.get(project_id)
+    print(project.image_file)
+    return render_template('projects_detail.html', project=project)
 
 
 @app.route('/projects/update/<int:project_id>')

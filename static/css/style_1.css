@@ -323,6 +323,14 @@ body{
 #section-projects-info .container{
     margin-top: 20px;
     margin-bottom: 20px;
+}#section-projects-info .card{
+
+}
+
+#section-projects-info img{
+    width: 100%;
+    min-height: 15rem;
+    border: 2px solid blue;
 }
 #section-projects-info .container .tech-title{
     padding: 5px;
@@ -331,4 +339,39 @@ body{
     text-align: center;
     margin-bottom: 10px;
 }
+
+#project-add{
+   padding: 2px;
+}
+#project-add fieldset{
+   border: 2px solid #d9534f;
+    margin-bottom: 6.5rem;
+    padding: 1.5rem;
+    text-align: left;
+    line-height: 0;
+}
+#project-add input[type='url'],#project-add input[type='file'],#project-add input[type='text'],.details{
+    padding: 5px;
+    border: 1px solid #d9534f;
+    background-color: rgba(255, 182, 174, 0.09);
+}
+#project-add textarea{
+       padding: 5px;
+    border: 1px solid #d9534f;
+    background-color: rgba(255, 182, 174, 0.09);
+    margin-bottom: 2px;
+}
+#project-add .details{
+    padding: 10px;
+}
+
 /*End projects section*/
+
+/*start of project style*/
+#project-detail .container-fluid{
+    height: 40vh;
+    background-color: rgba(255, 47, 52, 0.41);
+    color: white;
+    padding-top:70px
+}
+/*end of project style*/

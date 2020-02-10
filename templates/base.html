@@ -47,13 +47,17 @@
                         </li>
 
                          {% if current_user.is_authenticated %}
+                              <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('projects_add') }}"><i class="far fa-plus-square fa-1x"></i></a>
+                             </li>
                              <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('feedback') }}">Dashboard</a>
+                                <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
                              </li>
 
                              <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
                              </li>
+
                         {% else %}
                               <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('login') }}">Login</a>
