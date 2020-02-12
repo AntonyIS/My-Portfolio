@@ -395,10 +395,10 @@ body{
 
 /*Start about section styling*/
 #section-about{
-    margin-top: 3.8rem;
+    margin-top: 4rem;
+    padding-bottom: 3.8rem;
     margin-left: 0;
     margin-right: 0;
-    padding: 0;
     background-color: rgba(255, 1, 54, 0.09);
     color: #d9534f;
 
@@ -432,28 +432,44 @@ body{
     padding: 20px;
     margin-bottom: 10px;
 
+
 }
 #section-about .section-right .card{
     margin-left: 10px;
     margin-bottom: 5px;
+    box-shadow: 3px 3px 3px 3px rgba(255, 1, 54, 0.09);
+    background-color: rgba(255, 216, 145, 0.06);
+
 }
-/*#section-about .row{*/
-/*    background-color: rgba(255, 1, 54, 0.09);*/
-/*    padding: 0;*/
-/*    margin: 0;*/
-/*}*/
-/*#section-about .top-section{*/
-/*    border: 1px solid rgba(255, 1, 54, 0.09);*/
-/*}*/
-/*#section-about .container{*/
-/*    padding: 0;*/
-/*    color: #d9534f;*/
-/*}*/
 
-/*#section-about .card{*/
-/*    padding: 0px;*/
+#section-about .contact-info{
+    padding: 3px;
+}
+#section-about .contact-info span{
+    font-weight: bold;
+}
 
-/*    border: transparent;*/
-/*}*/
+#section-about .contact-info i{
+    margin-right: 1.3rem;
+    margin-top:5px;
+    padding-top: 3px;
+    padding-right: 3px;
+}
+#section-about .work{
+    padding: 0;
+    font-weight: bold;
+}
+#section-about .work button{
+    margin-top:2.7rem;
+}
+#section-about .skills{
+    text-align: center;
+    padding: 3px;
+    height: 5rem;
+    line-height: 0;
+}
+#section-about .skills i{
+    margin-right: 1.5rem;
+}
 
 /*End about section styling*/
