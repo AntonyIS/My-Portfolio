@@ -16,7 +16,7 @@ login_manager.init_app(app)
 
 SECRET_KEY = os.urandom(24)
 app.config['SECRET_KEY'] =SECRET_KEY
-ENV = 'dev'
+ENV = 'prod'
 if ENV == 'dev':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://antony:pass1234@localhost/Portfolio'
