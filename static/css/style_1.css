@@ -145,8 +145,18 @@ body{
     border:1px solid #d9534f ;
     border-radius: 8px;
 }
+#feedback h4{
+    text-transform: uppercase;
+}
 #feedback .jumbotron:hover{
     border:1px solid white
+}
+#feedback .error{
+    color:  #d9534f;
+}
+#feedback .error:hover{
+    color:  white;
+    font-size: 1rem;
 }
 /*End feedback section*/
 
@@ -324,13 +334,13 @@ body{
     margin-top: 20px;
     margin-bottom: 20px;
 }#section-projects-info .card{
-
+    min-height: 25rem;
 }
 
 #section-projects-info img{
     width: 100%;
-    min-height: 15rem;
-    border: 2px solid blue;
+    height: 15rem;
+
 }
 #section-projects-info .container .tech-title{
     padding: 5px;
@@ -339,12 +349,19 @@ body{
     text-align: center;
     margin-bottom: 10px;
 }
-
+#section-projects-info a{
+    text-decoration: none;
+     color: #d9534f;
+}
+#section-projects-info i{
+    padding-left: 3px;
+    padding-top: 3px;
+}
 #project-add{
    padding: 2px;
 }
 #project-add fieldset{
-   border: 2px solid #d9534f;
+    border: 2px solid #d9534f;
     margin-bottom: 6.5rem;
     padding: 1.5rem;
     text-align: left;
@@ -356,7 +373,7 @@ body{
     background-color: rgba(255, 182, 174, 0.09);
 }
 #project-add textarea{
-       padding: 5px;
+    padding: 5px;
     border: 1px solid #d9534f;
     background-color: rgba(255, 182, 174, 0.09);
     margin-bottom: 2px;
@@ -375,3 +392,68 @@ body{
     padding-top:70px
 }
 /*end of project style*/
+
+/*Start about section styling*/
+#section-about{
+    margin-top: 3.8rem;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    background-color: rgba(255, 1, 54, 0.09);
+    color: #d9534f;
+
+
+}
+#section-about .top-section{
+    border: 1px solid rgba(255, 1, 54, 0.09);
+    box-shadow: 3px 3px 3px 3px rgba(255, 1, 54, 0.09);
+}
+#section-about .top-section .img-section{
+    height: 15rem;
+    background-image: url("/static/images/banners/banner11.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin: 0;
+}
+#section-about .section-left,#section-about .section-right{
+   padding-top: 10px;
+   padding-left: 15px;
+   padding-right: 0;
+}
+#section-about .section-right{
+    padding-left: 0;
+}
+#section-about .section-right a{
+    text-decoration: none;
+    color:#d9534f;
+}
+#section-about .cardy{
+    padding: 20px;
+    margin-bottom: 10px;
+
+}
+#section-about .section-right .card{
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+/*#section-about .row{*/
+/*    background-color: rgba(255, 1, 54, 0.09);*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*}*/
+/*#section-about .top-section{*/
+/*    border: 1px solid rgba(255, 1, 54, 0.09);*/
+/*}*/
+/*#section-about .container{*/
+/*    padding: 0;*/
+/*    color: #d9534f;*/
+/*}*/
+
+/*#section-about .card{*/
+/*    padding: 0px;*/
+
+/*    border: transparent;*/
+/*}*/
+
+/*End about section styling*/

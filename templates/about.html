@@ -3,166 +3,124 @@
 
 
 {% block body %}
-    <div class="container-fluid" id="top-section-about">
-        <h1 class="content-title"></h1>
-    </div>
-    <div class="container" id="mid-section-about">
+<section id="section-about">
+    <div class="container" >
         <div class="row">
-            <div class="col col-sm-4 col-md-4 col-md-4 col-lg-4 col-xl-4 left">
+            <div class="col-md-8 col-lg-8 col-xl-8 section-left">
+                <div class="top-section">
+                    <div class="img-section">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-lg-8 col-xl-8 section-left">
+                            <div class="cardy">
+                                <h4 class="card-title">Antony Injila</h4>
+                                <p>Learning Facilitator and Developer(Python and JavaScript) <br>
+                                    Email:antonyhikubu@gmail.com <br>
+                                    <i class="fab fa-linkedin fa-2x"></i>
+                                    <i class="fab fa-github fa-2x"></i>
+                                    <i class="fab fa-instagram fa-2x"></i>
+                                    <i class="fab fa-twitter-square fa-2x"></i>
+                                    <i class="fab fa-youtube-square fa-2x"></i>
+                                </p>
+{#                                add  modal for contact info#}
+                            </div>
+
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4 section-right">
+                            <div class="cardy">
+                                <ul style="list-style-type: none">
+                                    <li><a href=""> eMobilis Mobile Technology Insititute</a></li>
+                                    <li><a href=""> Moi University </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-xl-4 section-right">
                 <div class="card">
-                     <img src="/{{user.image_file}}" alt="" class="img-thumbnail">
-                    <div class="card-body">
-                        <p class="card-text">{{user.name}}</p>
-                        <p class="card-text">{{user.email}}</p>
-
-                    </div>
+                   <div class="card-body">
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab delectus nam obcaecati. Error illo
+                        praesentium, provident reprehenderit tempore velit voluptatibus.
+                        </p>
+                   </div>
+                </div>
+                <div class="card">
+                   <div class="card-body">
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab delectus nam obcaecati. Error illo
+                        praesentium, provident reprehenderit tempore velit voluptatibus.
+                        </p>
+                   </div>
+                </div>
+                <div class="card">
+                   <div class="card-body">
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab delectus nam obcaecati. Error illo
+                        praesentium, provident reprehenderit tempore velit voluptatibus.
+                        </p>
+                   </div>
                 </div>
             </div>
-            <div class="col col-sm-8 col-md-8 col-md-8 col-lg-8 col-xl-8 right">
-                <div class="row">
-
-                    <div class="col col-sm-12 col-md-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="card">
-                            <div class="card-header">
-                                Technical experience
-                            </div>
-                            <div class="card-body">
-                              <p class="lead">{{user.technical_experience}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-sm-12 col-md-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="card">
-                            <div class="card-header">
-                                Current job
-                            </div>
-                            <div class="card-body">
-                               <p> {{user.current_job}}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-sm-12 col-md-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="card">
-                            <div class="card-header">
-                                Educational background
-                            </div>
-                            <div class="card-body">
-                                {{user.educational_background}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-sm-12 col-md-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="card">
-                            <div class="card-header">
-                                Profession
-                            </div>
-                            <div class="card-body">
-                                 {{user.profession}}
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="container-fluid">
-    <h2 class="content-title">Programming languages</h2>
-    <div class="row" id="programming">
-        <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="/static/images/logos/js2.png" alt="">
-                    <h5 class="title">Python</h5>
-                    <p>{{user.python}}
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="/static/images/logos/js2.png" alt="">
-                     <h5 class="title">JavaScript</h5>
-                    <p>{{user.javascript}}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-        <div class="row" id="programming">
-        <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="/static/images/logos/js2.png" alt="">
-                     <h5 class="title">Java</h5>
-                    <p>{{user.java}}
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="/static/images/logos/js2.png" alt="">
-                     <h5 class="title">Java</h5>
-                    <p>{{user.java}}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    </div>
-    <div class="container-fluid" id="top-framework">
-    <h2 class="content-title">My frameworks</h2>
-    <div class="container">
-            <div class="row" id="framework">
-                <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-header">
-                                <p>Django</p>
-                            </div>
-                                <p class="card-text">
-                                   {{user.django}}
+            <div class="col-md-8 col-lg-8 col-xl-8 section-left">
+                <div class="top-section">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-xl-12 section-left">
+                            <div class="cardy">
+                                <h4 class="card-title">Activities</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad blanditiis consequuntur
+                                    deleniti ea enim error, et facere fuga id illo, iste laudantium minus, neque nesciunt officia quam qui velit voluptas?
                                 </p>
-                                <button class="btn btn-info">View</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-header">
-                                <p>Flask</p>
+{#                                add  modal for contact info#}
                             </div>
-                                <p class="card-text">
-                                    {{user.flask}}
-                                </p>
-                                <button class="btn btn-info">View</button>
                         </div>
                     </div>
-                </div>
 
-                <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-header">
-                                <p>Node Js</p>
-                            </div>
-                                <p class="card-text">
-                                   {{user.nodejs}}
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-8 col-xl-8 section-left">
+                <div class="top-section">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-xl-12 section-left">
+                            <div class="cardy">
+                                <h4 class="card-title">Experience</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad blanditiis consequuntur
+                                    deleniti ea enim error, et facere fuga id illo, iste laudantium minus, neque nesciunt officia quam qui velit voluptas?
                                 </p>
-                                <button class="btn btn-info">View</button>
+{#                                add  modal for contact info#}
+                            </div>
+
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4 section-right">
+
                         </div>
                     </div>
                 </div>
-                <div id="more-text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores culpa cupiditate dolorum eligendi enim fugiat, fugit ipsum porro quaerat soluta.</p>
+            </div>
+
+            <div class="col-md-8 col-lg-8 col-xl-8 section-left">
+                <div class="top-section">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-xl-12 section-left">
+                            <div class="cardy">
+                                <h4 class="card-title">Education</h4>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad blanditiis consequuntur
+                                    deleniti ea enim error, et facere fuga id illo, iste laudantium minus, neque nesciunt officia quam qui velit voluptas?
+                                </p>
+{#                                add  modal for contact info#}
+                            </div>
+
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4 section-right">
+
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+</section>
 {% endblock body %}

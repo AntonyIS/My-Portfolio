@@ -7,9 +7,11 @@
                 <div class="jumbotron">
                     <h4>Page not found 404</h4>
                     <p class="lead">This page is still under development</p>
+                    <div class="error">
+                        <p>{{ error }}</p>
+                    </div>
                     <button class="btn btn-outline-danger">Download CV</button>
                     <a href="{{ url_for('index') }}">Go Home</a>
-
                 </div>
             </div>
         </div>

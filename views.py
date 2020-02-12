@@ -190,12 +190,13 @@ def projects():
 @app.route('/projects/detail/<int:project_id>')
 def projects_detail(project_id):
     project = Project.query.get(project_id)
-    print(project.image_file)
+
     return render_template('projects_detail.html', project=project)
 
 
 @app.route('/projects/update/<int:project_id>')
 def projects_update(project_id):
+    project = Project.query.get(project_id)
     return render_template('projects_update.html')
 
 
@@ -204,3 +205,11 @@ def projects_delete(project_id):
     return render_template('projects.html')
 
 
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('feedback.html', error=error, title='Antony Injila | 404'),404
+
+
+@app.errorhandler(500)
+def internal_server_error(error):
+    return render_template('feedback.html', error=error), 500
