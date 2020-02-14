@@ -454,6 +454,8 @@ body{
     margin-top:5px;
     padding-top: 3px;
     padding-right: 3px;
+    text-decoration: none;
+    color:#d9534f;
 }
 #section-about .work{
     padding: 0;
@@ -471,5 +473,17 @@ body{
 #section-about .skills i{
     margin-right: 1.5rem;
 }
+#section-about .experience {
+    padding: 5px;
+}
+#section-about .experience .title{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#section-about .experience .company, #section-about .experience .time{
+    font-weight: normal;
+    color: black;
 
+
+}
 /*End about section styling*/
