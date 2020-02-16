@@ -1,12 +1,8 @@
 from app import *
-from models import User, Project,Comment,db
+from app.models import User, Project, db
 from werkzeug.utils import secure_filename
 import os
 
-@login_manager.user_loader
-def load_user(user_id):
-    # since the user_id is just the primary key of our user table, use it in the query for the user
-    return User.query.get(int(user_id))
 
 
 @app.route('/')
@@ -150,7 +146,6 @@ def about():
 # Projects urls and views
 @app.route('/projects/add', methods=['GET', 'POST'])
 def projects_add():
-    print(app.root_path)
     if request.method == 'POST':
         name  = request.form['name']
         description  = request.form['description']
