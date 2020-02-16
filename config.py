@@ -5,7 +5,7 @@ base_dir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'topsecret'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    ENV = 'dev'
+    ENV = 'prod'
     if ENV == 'dev':
         debug = True
         SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI') or 'postgresql://antony:pass1234@localhost/Portfolio'
