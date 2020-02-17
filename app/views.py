@@ -1,9 +1,10 @@
 from app import *
 from app.models import User, Project, db
 from werkzeug.utils import secure_filename
+from flask import Flask, render_template, request, redirect, flash, url_for
+from werkzeug.security import generate_password_hash, check_password_hash
 import os
-
-
+from app import Config
 
 @app.route('/')
 def index():
@@ -16,38 +17,48 @@ def feedback():
 # user authentication
 @app.route('/signup', methods=['POST','GET'])
 def signup():
-    error = None
     if request.method == 'POST':
         name = request.form['username']
         email = request.form['email']
-        password = request.form['password']
-
+        password = request.form['password1']
+        c_password = request.form['password2']
         # check user exists
-        if db.session.query(User).filter(User.email == email).count() > 0:
-            error = "User exists!! Login"
-            return render_template('signup.html', error=error)
-        newUser = User(name=name,email=email,password=password)
-        db.session.add(newUser)
-        db.session.commit()
-        flash("Signup successful.Login",'alert alert-success')
-        return render_template('login.html')
-    return render_template('signup.html', title="Antony Injila | Signup", error=error)
+        user = User.query.filter_by(email=request.form['email']).first()
+
+        if user:
+            flash('User already exists here')
+            return render_template('signup.html')
+        else:
+            if password == c_password:
+                user = User(name=name, email=email,password=generate_password_hash(password))
+                db.session.add(user)
+                db.session.commit()
+                flash('User created successfuly')
+                return redirect(url_for('login'))
+            flash('Password did not match')
+            return redirect(url_for('signup'))
+
+
+    return render_template('signup.html', title="Antony Injila | Signup")
 
 
 @app.route('/login', methods=['POST','GET'])
 def login():
-    error = None
+    # collect form data
     if request.method == 'POST':
-        if request.form['email'] != 'antonyshikubu@gmail.com':
-            error = 'Invalid email'
-        elif request.form['password'] != 'pass1234':
-            error = 'Invalid password'
+        # check if empty
+        if request.form['email'] == None or request.form['password'] == None:
+            return redirect(url_for('login'))
         else:
-            user = User.query.get(1)
+            user = User.query.filter_by(email= request.form['email']).first()
+            # check if password match
+            if user is None or not user.check_password(request.form['password']):
+                flash('Invalid username or password', 'alert alert-danger')
+                return redirect(url_for('login'))
             login_user(user)
-            flash('Logging in was successful','altert alert-success')
+            flash('Login successful', 'alert alert-success')
             return redirect(url_for('index'))
-    return render_template('login.html', title='Antony Injila | Login', error=error)
+    return render_template('login.html', title="Antony Injila | Login")
 
 @app.route("/logout")
 def logout():
@@ -58,7 +69,7 @@ def logout():
 
 @app.route('/dashboard', methods=['GET','POST'])
 def dashboard():
-    projects = Project.query.all()
+    projects = Project.query.all()[:3]
     if request.form and request.files:
         name = request.form.get('name')
         email = request.form.get('email')
@@ -108,10 +119,9 @@ def dashboard_update():
 
         if filename:
             # location for storing images: Portfolio/static/images/name_of_image
-            image_file = "{}/{}/{}".format("static", "images/uploads", filename)
-
+            image_file = "{}/{}/{}".format("static", "images/uploads/avaters", filename)
             # image upload
-            f.save(os.path.join(app.config["UPLOAD_FOLDER"] + "/uploads", filename))
+            f.save(Config.UPLOAD_FOLDER +"/avaters/" +filename)
             user.image_file = image_file
             db.session.commit()
         else:
@@ -159,7 +169,7 @@ def projects_add():
         # location for storing images: Portfolio/static/images/name_of_image
         image_file = "{}/{}/{}".format("static", "images/uploads/projects", filename)
         # image upload
-        f.save(os.path.join(UPLOAD_FOLDER + "/uploads/projects", filename))
+        f.save(Config.UPLOAD_FOLDER + "/projects/" + filename)
         new_project = Project(
             name=name,
             description =description,

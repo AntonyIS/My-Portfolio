@@ -7,13 +7,13 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50),nullable=False)
     email = db.Column(db.String(50),nullable=False)
-    password = db.Column(db.String(50),nullable=False)
+    password= db.Column(db.String(300),nullable=False)
     about = db.Column(db.String(50),nullable=True)
-    image_file = db.Column(db.String(120), nullable=False, default='default.jpg')
-    project = db.relationship('Project', backref='user', lazy=True)
+    image_file = db.Column(db.String(120), nullable=True, default='default.jpg')
+    projects = db.relationship('Project', backref='user', lazy=True)
     technical_experience = db.Column(db.Text, nullable=True)
     current_job = db.Column(db.Text, nullable=True)
-    educational_background   = db.Column(db.Text, nullable=True)
+    educational_background = db.Column(db.Text, nullable=True)
     profession = db.Column(db.Text, nullable=True)
     python = db.Column(db.Text, nullable=True)
     javascript = db.Column(db.Text, nullable=True)
@@ -26,6 +26,12 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return "User :{}".format(self.name)
 
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
+
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -35,7 +41,7 @@ class Project(db.Model):
     youtube = db.Column(db.String(200), nullable=False)
     comments = db.Column(db.Integer, nullable=False, default=0)
     image_file = db.Column(db.String(120), nullable=False, default='project.jpg')
-    user_id = db.Column(db.ForeignKey(User.id))
+    user_id = db.Column(db.ForeignKey('user.id'))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
     def __repr__(self):

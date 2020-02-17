@@ -486,4 +486,29 @@ body{
 
 
 }
+#dashboard {
+    color:#d9534f;
+}
+#dashboard .row{
+    margin-top: 80px;
+    margin-bottom: 20px;
+}
+#dashboard .top-section{
+    height: 15rem;
+    background-image: url("/static/images/banners/banner11.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin: 0;
+}
+#dashboard textarea {
+    border: 1px solid red;
+}
+#dashboard .card-body  input[type='text'], input[type='email'], #dashboard textarea {
+    border: transparent;
+    background-color: rgba(214, 58, 255, 0.06);
+}
+#dashboard .btn-danger{
+    text-align: center;
+}
 /*End about section styling*/

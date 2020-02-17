@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}{{ title }}{% endblock title %}
 {% block body %}
-<section id="project-detail" style="background-image: url('{{ project.image_file }}')">
+<section id="project-detail" style="background-image: url('{{ project.image_file }}')" class="img-fluid">
     <div class="container-fluid">
         <div class="detail-section">
             <h3 class="content-title">{{ project.name }}</h3>
@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-md-6 col-lg-6 col-xl-6">
                 <div class="card">
-                    <img src="/{{ project.image_file }}" alt="img-{{ project.name }}">
+                    <img src="/{{ project.image_file }}" alt="img-{{ project.name }}" class="img-fluid">
                     <div class="card-body">
                         <p>{{ project.description }}</p>
                     </div>
