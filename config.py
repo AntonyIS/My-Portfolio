@@ -8,7 +8,7 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'topsecret'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOAD_FOLDER = os.path.join(base_dir+'/app/static/images/uploads')
-    ENV = 'dev'
+    ENV = 'prod'
 
     if ENV == 'dev':
         debug = True
