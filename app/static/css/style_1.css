@@ -494,7 +494,7 @@ body{
     margin-bottom: 20px;
 }
 #dashboard .top-section{
-    height: 15rem;
+    height: 12rem;
     background-image: url("/static/images/banners/banner11.jpg");
     background-size: cover;
     background-repeat: no-repeat;

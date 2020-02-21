@@ -6,6 +6,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from app import Config
 
+
+@log_manager.user_loader
+def load_user(user_id):
+    # since the user_id is just the primary key of our user table, use it in the query for the user
+    return User.query.get(int(user_id))
+
 @app.route('/')
 def index():
     return render_template('index_1.html', title='Antony Injila | Home')
@@ -23,20 +29,20 @@ def signup():
         password = request.form['password1']
         c_password = request.form['password2']
         # check user exists
-        user = User.query.filter_by(email=request.form['email']).first()
+        # user = User.query.filter_by(email=request.form['email']).first()
 
-        if user:
-            flash('User already exists here')
-            return render_template('signup.html')
-        else:
-            if password == c_password:
-                user = User(name=name, email=email,password=generate_password_hash(password))
-                db.session.add(user)
-                db.session.commit()
-                flash('User created successfuly')
-                return redirect(url_for('login'))
-            flash('Password did not match')
-            return redirect(url_for('signup'))
+        # if user:
+        #     flash('User already exists here')
+        #     return render_template('signup.html')
+        # else:
+        if password == c_password:
+            user = User(username=name, email=email,password=generate_password_hash(password))
+            db.session.add(user)
+            db.session.commit()
+            flash('User created successfuly')
+            return redirect(url_for('login'))
+        flash('Password did not match')
+        return redirect(url_for('signup'))
 
 
     return render_template('signup.html', title="Antony Injila | Signup")
@@ -96,7 +102,7 @@ def dashboard():
 def dashboard_update():
     projects = Project.query.all()
     user = User.query.get(1)
-    if request.method == "POST":
+    if request.method == "POST" or request.files:
         name = request.form.get('name')
         email = request.form.get('email')
         about = request.form.get('about')
@@ -113,16 +119,25 @@ def dashboard_update():
         android = request.form.get('android')
 
         image_file_old = request.form.get('image-file-old')
-        f = request.files['image-file']
-        filename = secure_filename(f.filename)
+        cv_file_old = request.form.get('cv-file-old')
+
+        f_image = request.files['image-file']
+        f_cv = request.files['image-file']
+        filename_image = secure_filename(f_image.filename)
+        filename_cv = secure_filename(f_image.filename)
 
 
-        if filename:
+
+        if filename_image or filename_cv:
             # location for storing images: Portfolio/static/images/name_of_image
-            image_file = "{}/{}/{}".format("static", "images/uploads/avaters", filename)
+            image_file = "{}/{}/{}".format("static", "images/uploads/avaters", filename_image)
+            cv_file = "{}/{}/{}".format("static", "images/uploads/resume", filename_cv)
             # image upload
-            f.save(Config.UPLOAD_FOLDER +"/avaters/" +filename)
+            f_image.save(Config.UPLOAD_FOLDER +"/avaters/" +filename_image)
+            f_cv.save(Config.UPLOAD_FOLDER +"/resume/" +filename_cv)
             user.image_file = image_file
+            user.cv_file = cv_file
+
             db.session.commit()
         else:
             user.name = name
@@ -140,7 +155,7 @@ def dashboard_update():
             user.nodejs = nodejs
             user.android = android
             user.image_file = image_file_old
-
+            user.cv_file = cv_file_old
         # save the new changes
             db.session.commit()
         # return redirect('/project/update/{}/'.format(project_id))
