@@ -506,7 +506,7 @@ body{
 }
 #dashboard .card-body  input[type='text'], input[type='email'], #dashboard textarea {
     border: transparent;
-    background-color: rgba(214, 58, 255, 0.06);
+    /*background-color: rgba(214, 58, 255, 0.06);*/
 }
 #dashboard .btn-danger{
     text-align: center;
