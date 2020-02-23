@@ -44,6 +44,7 @@ class Project(db.Model):
     youtube = db.Column(db.String(200), nullable=False)
     image_file = db.Column(db.String(120), nullable=False, default='project.jpg')
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    technologies = db.Column(db.String(200), nullable=True, default='Python')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 

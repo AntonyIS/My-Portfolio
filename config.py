@@ -8,11 +8,13 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'topsecret'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOAD_FOLDER = os.path.join(base_dir+'/app/static/images/uploads')
-    ENV = 'prod'
+
+    ENV = 'dev'
 
     if ENV == 'dev':
         debug = True
         SQLALCHEMY_DATABASE_URI = "postgresql://antony:pass1234@localhost/portfolio"
+
 
     else:
         debug = False

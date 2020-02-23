@@ -9,13 +9,13 @@
                 <span>Hey</span>
                 <span>I am </span>
                 <span>Antony Injila</span>
-                <span>Aspiring Software Engineer</span>
+                <span>Software Developer</span>
             </h3>
             <p><span class="quotes">"</span>The doers are the major thinkers. The people that really create the things that change this
                 industry are both the thinker and doer in one person... <span class="quotes">"</span><span id="author">Steve Jobs </span>
             </p>
             <button class="btn btn-danger">Hire me</button>
-            <button class="btn btn-outline-danger">Download CV</button>
+             <a href="{{url_for('resume')}}" class="btn btn-outline-danger" target="_blank">View Resume</a>
             <i class="fab fa-js-square fa-2x"></i>
             <i class="fab fa-php fa-2x"></i>
             <i class="fab fa-java fa-2x"></i>
@@ -163,67 +163,39 @@
 <!--######################End middle index section####################################-->
 
 <!--######################Start project index section#################################-->
-<section id="section-projects">
-    <div class="container">
-         <h3 class="tech-title">My projects</h3>
+<section id="section-projects-info">
+ <div class="container">
+        <h3 class="tech-title">Latest projects</h3>
         <div class="row">
-            <div class="col-md-3 col-lg-3 col-xl-3">
-                <div class="card">
-                    <img src="{{ url_for('static', filename='images/banners/banner8.jpg') }}" alt="" class="img-fluid">
-                    <div class="card-body">
-                        <h4 class="card-title">Python REST API</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur
-                            deleniti et laboriosam, quod ullam ut.
-                        </p>
-                    </div>
+        {% if projects %}
+           {% for project in projects %}
+               <div class="col-md-3 col-lg-3 col-xl-3">
+                   <a href="{{ url_for('projects_detail', project_id=project.id)}}">
+                        <div class="card">
+                            <img src="{{project.image_file}}" alt=""  >
+                            <div class="card-body">
+                                <h5 class="card-title">{{project.name}}</h5>
+                                <p class="card-text"></p>
+                                <div class="link">
+                                    <a  href="{{ url_for('projects_detail', project_id=project.id)}}" class="btn btn-outline-danger">View</a>
+                                    <a href="{{ project.github }}"><i class="fab fa-github fa-2x"></i></a>
+{#                                    <span class="badge badge-danger">0</span>#}
+                                </div>
+                            </div>
+                        </div>
+                   </a>
                 </div>
+           {% endfor %}
+        {% else %}
+            <div class="container">
+            <div class="jumbotron" style="text-align: center;font-size: 1.5rem">
+                <p class="card-text">No projects available</p>
             </div>
-             <div class="col-md-3 col-lg-3 col-xl-3">
-                <div class="card">
-                    <img src="{{ url_for('static', filename='images/banners/banner8.jpg') }}" alt="" class="img-fluid">
-                    <div class="card-body">
-                        <h4 class="card-title">Python REST API</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur
-                            deleniti et laboriosam, quod ullam ut.
-                        </p>
-                    </div>
-                </div>
             </div>
-             <div class="col-md-3 col-lg-3 col-xl-3">
-                <div class="card">
-                    <img src="{{ url_for('static', filename='images/banners/banner8.jpg') }}" alt="" class="img-fluid">
-                    <div class="card-body">
-                        <h4 class="card-title">Python REST API</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur
-                            deleniti et laboriosam, quod ullam ut.
-                        </p>
-                    </div>
-                </div>
-            </div>
-             <div class="col-md-3 col-lg-3 col-xl-3">
-                <div class="card">
-                    <img src="{{ url_for('static', filename='images/banners/banner8.jpg') }}" alt="" class="img-fluid">
-                    <div class="card-body">
-                        <h4 class="card-title">Python REST API</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur
-                            deleniti et laboriosam, quod ullam ut.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="project-detail" >
-           <div class="jumbotron">
-                <h3 class="">About my projects</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor enim explicabo hic impedit incidunt maiores
-                    ratione tenetur? A adipisci esse, est eum fugit ipsa iste perspiciatis possimus, sed similique voluptate?
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor enim explicabo hic impedit incidunt maiores
-                    ratione tenetur? A adipisci esse, est eum fugit ipsa iste perspiciatis possimus, sed similique voluptate?
-                </p>
-                <a href="{{ url_for('feedback') }}" class=" btn btn-outline-danger">View more</a>
-           </div>
+        {% endif %}
         </div>
     </div>
+
 </section>
 <!--######################End project index section####################################-->
 

@@ -49,8 +49,8 @@
            {% endfor %}
         {% else %}
             <div class="container">
-            <div class="jumbotron">
-                <p>No projects available</p>
+            <div class="jumbotron" style="text-align: center;font-size: 1.5rem">
+                <p class="card-text">No projects available</p>
             </div>
             </div>
         {% endif %}
@@ -65,13 +65,14 @@
                        <fieldset>
                             <h5 class="social-media">Add a new project...</h5>
                            <hr>
-                           <div class="input-group">
-                               <div class="form-group">
-                                    <label for="">Name</label>
-                                    <input type="text" name="name" class="form-control" required>
-                                </div>
-
-                           </div>
+                           <div class="form-group">
+                                <label for="">Name</label>
+                                <input type="text" name="name" class="form-control" required>
+                            </div>
+                           <div class="form-group">
+                                <label for="">Technologies</label>
+                                <input type="text" name="technologies" class="form-control" required>
+                            </div>
                            <div class="">
                                <div class="form-group">
                                     <label for="">Github url</label>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,send_file,send_from_directory
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, logout_user, login_user

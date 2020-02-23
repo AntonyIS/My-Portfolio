@@ -96,6 +96,8 @@ body{
     margin-top: 5rem;
     padding: 2.3rem;
     border-radius: 8px;
+    text-decoration: none;
+
 }
 #footer .social-media{
     text-transform: uppercase;
@@ -128,6 +130,10 @@ body{
     padding: 0.7rem;
     border-radius: 8px;
     color: black;
+}
+
+#footer a{
+    color: white;
 }
 /*End footer section*/
 
@@ -229,12 +235,32 @@ body{
     margin-top: 25px;
     margin-bottom: 25px;
     text-align: center;
+    color: #d9534f;
+}
+#project-detail a{
+    text-decoration: none;
+    color: #d9534f;
+    margin-left:2rem
+}
+#project-detail .container-fluid{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("/static/images/banners/banner8.jpg");
+    background-position: center;
+    margin-bottom: 20px;
+}
+#project-detail  .card-body{
+    text-align: left;
 }
 #project-detail .jumbotron{
     background-color: rgba(255, 50, 137, 0.09);
 }
 #project-detail .jumbotron:hover{
     background-color: rgba(255, 182, 174, 0.09);
+}
+#project-detail .detail-section{
+    text-align: left;
+    margin-left: 2rem;
 }
 /*Start projects section*/
 
@@ -512,3 +538,18 @@ body{
     text-align: center;
 }
 /*End about section styling*/
+
+
+
+/*start resume section styling*/
+#section-resume .jumbotron{
+    text-transform: uppercase;
+    margin-top: 20px;
+    text-align: center;
+    background-color: rgba(217, 83, 79, 0.44);
+}
+#section-resume embed{
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.31);
+}
+/*end resume section styling*/

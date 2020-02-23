@@ -7,6 +7,8 @@ import os
 from app import Config
 
 
+# default user
+
 @log_manager.user_loader
 def load_user(user_id):
     # since the user_id is just the primary key of our user table, use it in the query for the user
@@ -14,11 +16,14 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-    return render_template('index_1.html', title='Antony Injila | Home')
+    projects = Project.query.all()
+    return render_template('index_1.html', title='Antony Injila | Home', projects=projects)
 
 @app.route('/404', methods=['POST', 'GET'])
 def feedback():
     return render_template('feedback.html', title='Antony Injila | 404')
+
+
 
 # user authentication
 @app.route('/signup', methods=['POST','GET'])
@@ -43,7 +48,6 @@ def signup():
             return redirect(url_for('login'))
         flash('Password did not match')
         return redirect(url_for('signup'))
-
 
     return render_template('signup.html', title="Antony Injila | Signup")
 
@@ -122,23 +126,24 @@ def dashboard_update():
         cv_file_old = request.form.get('cv-file-old')
 
         f_image = request.files['image-file']
-        f_cv = request.files['image-file']
+        f_cv = request.files['cv-file']
+
         filename_image = secure_filename(f_image.filename)
-        filename_cv = secure_filename(f_image.filename)
+        filename_cv = secure_filename(f_cv.filename)
 
-
-
-        if filename_image or filename_cv:
-            # location for storing images: Portfolio/static/images/name_of_image
+        if filename_image:
             image_file = "{}/{}/{}".format("static", "images/uploads/avaters", filename_image)
+            f_image.save(Config.UPLOAD_FOLDER + "/avaters/" + filename_image)
+            user.image_file = image_file
+            db.session.commit()
+        elif filename_cv:
+            # location for storing images: Portfolio/static/images/name_of_image
             cv_file = "{}/{}/{}".format("static", "images/uploads/resume", filename_cv)
             # image upload
-            f_image.save(Config.UPLOAD_FOLDER +"/avaters/" +filename_image)
             f_cv.save(Config.UPLOAD_FOLDER +"/resume/" +filename_cv)
-            user.image_file = image_file
             user.cv_file = cv_file
-
             db.session.commit()
+
         else:
             user.name = name
             user.email = email
@@ -163,30 +168,49 @@ def dashboard_update():
 
     return render_template('dashboard.html', title="Antony Injila | Dashboard update", user=user, projects=projects)
 
+
+
+
+
 @app.route('/about')
 def about():
     user = User.query.get(1)
     return render_template('about.html', title='Antony Injila | About page', user=user)
+
+
+@app.route('/resume')
+def resume():
+    user = User.query.get(1)
+    resume = user.cv_file
+    return render_template('resume.html', title='Antony Injila | Resume page', resume=resume)
 
 # Projects urls and views
 @app.route('/projects/add', methods=['GET', 'POST'])
 def projects_add():
     if request.method == 'POST':
         name  = request.form['name']
+        technologies  = request.form['technologies']
         description  = request.form['description']
         github  = request.form['github']
         youtube  = request.form['youtube']
 
-
         # grab imge file
         f = request.files['image-file']
         filename = secure_filename(f.filename)
+        image_file=''
+
+        if filename =='':
+            image_file = "{}/{}/{}".format("static", "images/uploads/projects", 'default.jpeg')
+            # f.save(Config.UPLOAD_FOLDER + "/projects/" + 'default.jpeg')
         # location for storing images: Portfolio/static/images/name_of_image
-        image_file = "{}/{}/{}".format("static", "images/uploads/projects", filename)
-        # image upload
-        f.save(Config.UPLOAD_FOLDER + "/projects/" + filename)
+        else:
+            image_file = "{}/{}/{}".format("static", "images/uploads/projects", filename)
+            # image upload
+            f.save(Config.UPLOAD_FOLDER + "/projects/" + filename)
+
         new_project = Project(
             name=name,
+            technologies=technologies,
             description =description,
             github = github,
             youtube = youtube,
@@ -201,23 +225,51 @@ def projects_add():
 
 @app.route('/projects')
 def projects():
-    error = None
     projects = Project.query.all()
-    print(projects)
     return render_template('projects.html', title = 'Antony Injila | Projects', projects=projects)
 
 
 @app.route('/projects/detail/<int:project_id>')
 def projects_detail(project_id):
     project = Project.query.get(project_id)
+    technologies = ''
+    if project.technologies:
+        technologies = project.technologies.split()
+    else:
+        pass
 
-    return render_template('projects_detail.html', project=project)
+    return render_template('projects_detail.html', project=project,technologies=technologies)
 
 
-@app.route('/projects/update/<int:project_id>')
+@app.route('/projects/update/<int:project_id>', methods=['POST'])
 def projects_update(project_id):
     project = Project.query.get(project_id)
-    return render_template('projects_update.html')
+    if request.method == "POST" or request.files:
+        project = Project.query.get(project_id)
+        name = request.form['name']
+        technologies = request.form['technologies']
+        description = request.form['description']
+
+        if request.files['project-image']:
+            f = request.files['project-image']
+            filename = secure_filename(f.filename)
+            image_file = "{}/{}/{}".format("static", "images/uploads/projects", filename)
+            f.save(Config.UPLOAD_FOLDER + "/projects/" + filename)
+
+            project.image_file = image_file
+            db.session.commit()
+            return redirect(url_for('projects_detail', project_id=project.id))
+        else:
+            project.name=name
+            project.technologies = technologies
+            project.description = description
+            project.image_file = request.form['old-project-image']
+            db.session.commit()
+            return redirect(url_for('projects_detail', project_id=project.id))
+
+    return redirect(url_for('projects_detail', project_id=project.id))
+
+    # return render_template('projects_update.html')
 
 
 @app.route('/projects/delete/<int:project_id>')

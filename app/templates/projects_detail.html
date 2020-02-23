@@ -1,43 +1,81 @@
 {% extends 'base.html' %}
 {% block title %}{{ title }}{% endblock title %}
 {% block body %}
-<section id="project-detail" style="background-image: url('{{ project.image_file }}')" class="img-fluid">
-    <div class="container-fluid">
+<section id="project-detail" >
+    <div class="container-fluid img-fluid" >
         <div class="detail-section">
-            <h3 class="content-title">{{ project.name }}</h3>
+            <h2 class="content-title">{{ project.name }}</h2>
+            <h5>Technologies used in <span style="font-weight: bold">{{ project.name }}</span></h5>
+
+                {% if technologies %}
+                    {% for technology in technologies %}
+                        <ul style="list-style-type: none">
+                            <li><span style="line-height: 0px">{{ technology }}</span></li>
+                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <p class="lead">No Technologies present for <span style="font-weight: bold">{{ project.name }}</span></p>
+                {% endif  %}
+
         </div>
     </div>
         {% if current_user.is_authenticated %}
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-lg-6 col-xl-6">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-6 col-xl-6">
-                                <div class="">
-                                    <img src="/{{ project.image_file }}" alt="img-{{ project.name }}">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6 col-xl-6"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-6"></div>
-                </div>
-            </div>
         {% endif %}
     <div class="container">
+        <form action="{{ url_for('projects_update', project_id=project.id) }}" method="post" enctype="multipart/form-data">
         <div class="row">
-            <div class="col-md-6 col-lg-6 col-xl-6">
+            <div class="col-md-4 col-lg-4 col-xl-4">
                 <div class="card">
                     <img src="/{{ project.image_file }}" alt="img-{{ project.name }}" class="img-fluid">
                     <div class="card-body">
-                        <p>{{ project.description }}</p>
+                       <span>{{ project.name }}
+                        <a href="{{ project.github }}"><i class="fab fa-github fa-3x"></i></a>
+                       </span>
+                            {% if current_user.is_authenticated %}
+                                <input type="file" name="project-image" class="">
+                                <input type="text" hidden name="old-project-image" value="{{ project.image_file }}" class="form-control">
+                                <br>
+                                <button  class="btn btn-danger" type="submit">Update {{ project.name }}</button>
+                            {% endif %}
                     </div>
                 </div>
 
             </div>
-            <div class="col-md-6 col-lg-6 col-xl-6"></div>
+            <div class="col-md-8 col-lg-8 col-xl-8">
+                <div class="card">
+                    <div class="card-body">
+                        <p style="color: red">{{ project.description }}</p>
+                        <span style="font-weight: bold">Developed on :
+                        {{ project.created_at.strftime("%Y") }},
+                        {{ project.created_at.strftime("%B") }}
+                        {{ project.created_at.strftime("%d") }}
+                        </span>
+                        <span style="font-weight: bold">@
+                        <i class="fa fa-calendar"></i>
+                            <span>{{ project.created_at.strftime("%X") }}</span>
+                        </span>
+                        {% if current_user.is_authenticated %}
+                                <div class="form-group">
+                                    <label for="">Title</label>
+                                    <input type="text" class="form-control" name="name" value="{{ project.name }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Technologies</label>
+                                    <input type="text" class="form-control" name="technologies" value="{{ project.technologies }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Description</label>
+                                    <textarea name="description" id="" cols="30" rows="10" class="form-control">
+                                        {{ project.description.strip() }}
+                                    </textarea>
+                                </div>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
+        </form>
     </div>
 </section>
 {% endblock body %}
-http://127.0.0.1:5000/projects/detail/static/images/uploads/projects/gd.jpeg
