@@ -252,6 +252,8 @@ def projects_update(project_id):
         project = Project.query.get(project_id)
         name = request.form['name']
         technologies = request.form['technologies']
+        youtube = request.form['youtube']
+        github = request.form['github']
         description = request.form['description']
 
         if request.files['project-image']:
@@ -262,12 +264,16 @@ def projects_update(project_id):
 
             project.image_file = image_file
             project.name=name
+            project.youtube=youtube
+            project.github=github
             project.technologies = technologies
             project.description = description
             db.session.commit()
             return redirect(url_for('projects_detail', project_id=project.id))
         else:
             project.name=name
+            project.youtube=youtube
+            project.github=github
             project.technologies = technologies
             project.description = description
             project.image_file = request.form['old-project-image']
