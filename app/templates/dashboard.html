@@ -21,11 +21,16 @@
                         <br>
                         <div class="card">
                             <div class="card-body">
-                            <h4 class="card-title">Projects <span> <a href="{{url_for('projects_add')}}"><i class="fas fa-plus-circle"></i></a></span></h4>
+                            <h4 class="card-title">Projects
+                                <span> <a href="{{url_for('projects')}}"><i class="fas fa-plus-circle"></i>
+                                    <span class="badge badge-danger">{{projects_num}}</span></a>
+                                </span>
+                            </h4>
+
                              <hr>
-                            <ul>
+                            <ul style="list-style-type: none">
                                 {% for project in projects %}
-                                <li><p><a href="#">{{ project.name }}</a></p></li>
+                                <li><p><a href="{{ url_for('projects_detail', project_id=project.id) }}">{{ project.name }}</a></p></li>
                                 {% endfor%}
                             </ul>
                             <p>More...</p>
@@ -40,28 +45,29 @@
 
                         </div>
                        <div class="">
+                            <div class="card-enclosure">
+                                <label for="">About me</label>
+                                <textarea name="about" id="" class="form-control">{{ user.about }}</textarea>
+                           </div>
                            <div class="card-enclosure">
                                 <label for="">Recent Activities</label>
-                                <textarea name="" id="" class="form-control">
-                                    {{ user.recent_activities }}
-                                </textarea>
+                                <textarea name="recent_activities" id="" class="form-control">{{ user.recent_activities }}</textarea>
                            </div>
                            <div class="card-enclosure">
                                 <label for="">Technical experience</label>
-                                <textarea name="" id="" class="form-control"> {{ user.technical_experience }}</textarea>
-
+                                <textarea name="technical_experience" id="" class="form-control"> {{ user.technical_experience }}</textarea>
                            </div>
                            <div class="card-enclosure">
                                 <label for="">Work place</label>
-                                <textarea name="" id="" class="form-control" >{{ user.current_job }}</textarea>
+                                <textarea name="current_job" id="" class="form-control" >{{ user.current_job }}</textarea>
                            </div>
                            <div class="card-enclosure">
                                 <label for="">Educational Background</label>
-                                <textarea name="" id="" class="form-control">{{ user.educational_background }}</textarea>
+                                <textarea name="educational_background" id="" class="form-control">{{ user.educational_background }}</textarea>
                            </div>
                            <div class="card-enclosure">
                                 <label for="">Profession</label>
-                                <textarea name="" id="" class="form-control">{{ user.profession }}</textarea>
+                                <textarea name="profession" id="" class="form-control">{{ user.profession }}</textarea>
                            </div>
                        </div>
                     </div>

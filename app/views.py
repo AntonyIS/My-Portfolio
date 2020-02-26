@@ -80,6 +80,7 @@ def logout():
 @app.route('/dashboard', methods=['GET','POST'])
 def dashboard():
     projects = Project.query.all()[:3]
+    projects_num = len(projects)
     if request.form and request.files:
         name = request.form.get('name')
         email = request.form.get('email')
@@ -99,18 +100,20 @@ def dashboard():
         return render_template('dashboard.html',title="Antony Injila | Dashboard",user=user )
     user = User.query.get(1)
     count = len(projects)
-    return render_template('dashboard.html', title="Antony Injila | Dashboard", user=user,count=count, projects=projects)
+    return render_template('dashboard.html', title="Antony Injila | Dashboard", user=user,count=count, projects=projects,projects_num = projects_num)
 
 
 @app.route('/dashboard/update', methods=['GET','POST'])
 def dashboard_update():
     projects = Project.query.all()
     user = User.query.get(1)
+    projects_num = len(projects)
     if request.method == "POST" or request.files:
         name = request.form.get('name')
         email = request.form.get('email')
         about = request.form.get('about')
         technical_experience = request.form.get('technical_experience')
+        recent_activities = request.form.get('recent_activities')
         current_job = request.form.get('current_job')
         educational_background = request.form.get('educational_background')
         profession = request.form.get('profession')
@@ -121,7 +124,6 @@ def dashboard_update():
         flask = request.form.get('flask')
         nodejs = request.form.get('nodejs')
         android = request.form.get('android')
-
         image_file_old = request.form.get('image-file-old')
         cv_file_old = request.form.get('cv-file-old')
 
@@ -149,6 +151,7 @@ def dashboard_update():
             user.email = email
             user.about = about
             user.technical_experience = technical_experience
+            user.recent_activities = recent_activities
             user.current_job = current_job
             user.educational_background = educational_background
             user.profession = profession
@@ -244,6 +247,7 @@ def projects_detail(project_id):
 @app.route('/projects/update/<int:project_id>', methods=['POST'])
 def projects_update(project_id):
     project = Project.query.get(project_id)
+
     if request.method == "POST" or request.files:
         project = Project.query.get(project_id)
         name = request.form['name']
@@ -257,6 +261,9 @@ def projects_update(project_id):
             f.save(Config.UPLOAD_FOLDER + "/projects/" + filename)
 
             project.image_file = image_file
+            project.name=name
+            project.technologies = technologies
+            project.description = description
             db.session.commit()
             return redirect(url_for('projects_detail', project_id=project.id))
         else:
