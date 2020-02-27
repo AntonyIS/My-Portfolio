@@ -1,5 +1,5 @@
 from app import *
-from app.models import User, Project, db
+from app.models import User, Project,Comment, db
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, redirect, flash, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -190,6 +190,7 @@ def resume():
 # Projects urls and views
 @app.route('/projects/add', methods=['GET', 'POST'])
 def projects_add():
+    projects = Project.query.all()
     if request.method == 'POST':
         name  = request.form['name']
         technologies  = request.form['technologies']
@@ -223,7 +224,7 @@ def projects_add():
         db.session.commit()
         flash('{} added successfuly'.format(name), 'alert alert-success')
         return redirect(url_for('projects'))
-    return render_template('projects.html', title='Antony Injila | Projects Add')
+    return render_template('projects.html', title='Antony Injila | Projects Add', projects=projects)
 
 
 @app.route('/projects')
@@ -235,13 +236,14 @@ def projects():
 @app.route('/projects/detail/<int:project_id>')
 def projects_detail(project_id):
     project = Project.query.get(project_id)
+    comments = Comment.query.filter_by(project_id=project_id).all()
     technologies = ''
     if project.technologies:
         technologies = project.technologies.split()
     else:
         pass
 
-    return render_template('projects_detail.html', project=project,technologies=technologies)
+    return render_template('projects_detail.html', project=project,technologies=technologies, comments=comments)
 
 
 @app.route('/projects/update/<int:project_id>', methods=['POST'])
@@ -288,6 +290,22 @@ def projects_update(project_id):
 @app.route('/projects/delete/<int:project_id>')
 def projects_delete(project_id):
     return render_template('projects.html')
+
+@app.route('/comment', methods=['GET','POST'])
+def comment():
+
+    project_id = request.form['project_id']
+    comment = request.form['comment']
+
+
+
+    comment = Comment(project_id=project_id,comment=comment)
+    db.session.add(comment)
+    db.session.commit()
+    flash("Comment added successfuly")
+    return redirect(url_for('projects_detail', project_id=project_id))
+
+
 
 
 @app.errorhandler(404)

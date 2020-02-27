@@ -9,7 +9,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOAD_FOLDER = os.path.join(base_dir+'/app/static/images/uploads')
 
-    ENV = 'prod'
+    ENV = 'dev'
 
     if ENV == 'dev':
         debug = True

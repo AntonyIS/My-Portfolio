@@ -8,7 +8,7 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(50),nullable=False)
     email = db.Column(db.String(50),nullable=False)
     password= db.Column(db.String(300),nullable=False)
-    about = db.Column(db.String(50),nullable=True)
+    about = db.Column(db.String(500),nullable=True)
     image_file = db.Column(db.String(120), nullable=True, default='default.jpg')
     cv_file = db.Column(db.String(120), nullable=True, default='default.jpg')
     technical_experience = db.Column(db.Text, nullable=True)
@@ -39,7 +39,7 @@ class Project(db.Model):
     __tablename__ = "projects"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
-    description = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.String(500), nullable=False)
     github = db.Column(db.String(200), nullable=False)
     youtube = db.Column(db.String(200), nullable=False)
     image_file = db.Column(db.String(120), nullable=False, default='project.jpg')
@@ -58,4 +58,4 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     project_id =db.Column(db.Integer, nullable=False)
     comment = db.Column(db.String(50), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    created_at = db.Column(db.DateTime, default=datetime.utcnow()) 
