@@ -28,16 +28,17 @@
                 <div class="card">
                     <img src="/{{ project.image_file }}" alt="img-{{ project.name }}" class="img-fluid">
                     <div class="card-body">
-                       <span>{{ project.name }}
-                        <a href="{{ project.github }}"><i class="fab fa-github fa-3x"></i></a>
-
-                       </span>
-                            {% if current_user.is_authenticated %}
-                                <input type="file" name="project-image" class="">
-                                <input type="text" hidden name="old-project-image" value="{{ project.image_file }}" class="form-control">
-                                <br>
-                               <span>Comment(s)  <i class="badge badge-danger">{{ count_comments }}</i></span>
-                            {% endif %}
+                    <span>{{ project.name }}</span>
+                        <hr>
+                   <span>
+                       <a href="{{ project.github }}"><i class="fab fa-github fa-3x"></i></a>
+                   </span>
+                        {% if current_user.is_authenticated %}
+                            <input type="file" name="project-image" class="">
+                            <input type="text" hidden name="old-project-image" value="{{ project.image_file }}" class="form-control">
+                            <br>
+                           <span>Comment(s)  <i class="badge badge-danger">{{ count_comments }}</i></span>
+                        {% endif %}
                     </div>
                 </div>
             {% if current_user.is_authenticated %}
