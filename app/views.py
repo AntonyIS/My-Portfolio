@@ -237,13 +237,14 @@ def projects():
 def projects_detail(project_id):
     project = Project.query.get(project_id)
     comments = Comment.query.filter_by(project_id=project_id).all()
+    count_comments = len(comments)
     technologies = ''
     if project.technologies:
         technologies = project.technologies.split()
     else:
         pass
 
-    return render_template('projects_detail.html', project=project,technologies=technologies, comments=comments)
+    return render_template('projects_detail.html', project=project,technologies=technologies, comments=comments,count_comments=count_comments, title="Antony Injila |{} page".format(project.name))
 
 
 @app.route('/projects/update/<int:project_id>', methods=['POST'])
@@ -296,9 +297,6 @@ def comment():
 
     project_id = request.form['project_id']
     comment = request.form['comment']
-
-
-
     comment = Comment(project_id=project_id,comment=comment)
     db.session.add(comment)
     db.session.commit()

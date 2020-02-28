@@ -262,6 +262,18 @@ body{
     text-align: left;
     margin-left: 2rem;
 }
+
+#comments{
+    padding-top: 3px;
+    padding-left: 3px;
+}
+#comment-img{
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    margin: 2px;
+    border: 2px solid red
+}
 /*Start projects section*/
 
 /*Start section mentor*/

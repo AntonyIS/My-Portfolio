@@ -30,19 +30,19 @@
                     <div class="card-body">
                        <span>{{ project.name }}
                         <a href="{{ project.github }}"><i class="fab fa-github fa-3x"></i></a>
+
                        </span>
                             {% if current_user.is_authenticated %}
                                 <input type="file" name="project-image" class="">
                                 <input type="text" hidden name="old-project-image" value="{{ project.image_file }}" class="form-control">
                                 <br>
-                                <button  class="btn btn-danger" type="submit">Update {{ project.name }}</button>
+                               <span>Comment(s)  <i class="badge badge-danger">{{ count_comments }}</i></span>
                             {% endif %}
                     </div>
                 </div>
+            {% if current_user.is_authenticated %}
                 <div class="card">
                     <div class="card-body">
-
-                        {% if current_user.is_authenticated %}
                                 <div class="form-group">
                                     <label for="">Title</label>
                                     <input type="text" class="form-control" name="name" value="{{ project.name }}">
@@ -66,51 +66,57 @@
                                         {{ project.description.strip() }}
                                     </textarea>
                                 </div>
-                        {% endif %}
+                              <button  class="btn btn-danger btn-block" type="submit">Update {{ project.name }}</button>
+
                     </div>
                 </div>
-
-
+             {% endif %}
             </div>
           </form>
             <div class="col-md-8 col-lg-8 col-xl-8 card ">
-               <div class="" style="text-align: left">
+               <div class="" style="text-align: left;padding-top: 3px">
+               <h3>{{ project.name }}</h3>
+                   <hr>
                 <p style="color: red;text-align: left;" class="card-text" >{{ project.description }}</p>
                 <span style="font-weight: bold">Developed on :
                 {{ project.created_at.strftime("%Y") }},
                 {{ project.created_at.strftime("%B") }}
                 {{ project.created_at.strftime("%d") }}
                 </span>
+                   <br>
                 <span style="font-weight: bold">@
                 <i class="fa fa-calendar"></i>
                     <span>{{ project.created_at.strftime("%X") }}</span>
                 </span>
-                   <div class="col-md-12 col-lg-12 col-xl-12 ">
-                       <div id="comments">
-                           <div class="row">
-                               {% if comments %}
-                                {% for comment in comments %}
-                                <div class="col-md-6 col-lg-6 col-xl-6" style="margin-bottom: 1rem">
-                                    <div class="card">
-                                        <div class="row">
-                                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                                <img src="{{ url_for('static',filename='images/logos/brand1.jpg') }}" class="bg-warning" alt="" style="height: 40px;width: 40px">
-                                            </div>
-                                            <div class="col-md-10 col-lg-10 col-xl-10">
-                                                <div class="card-body">
-                                                   <p style="font-size: 0.8rem;text-align: left;padding: 0;margin: 0;line-height: 0" >{{ comment.comment }}</p>
-                                                     <span style="font-size: 0.4rem;padding: 0;margin: 0;line-height: 0">like</span>
-                                                </div>
+                   <br>
 
+               <div class="card" style="margin-top: 5px;margin-bottom: 5px">
+                    <iframe width="724" height="330" src="{{project.youtube}}" frameborder="0" allowfullscreen class="img-card"></iframe>
+               </div>
+                   <div id="comments">
+                       <div class="row">
+                           {% if comments %}
+                            {% for comment in comments %}
+                            <div class="col-md-10 col-lg-10 col-xl-10" style="margin-bottom: 1rem">
+                                <div class="card">
+                                    <div class="row">
+                                        <div class="col-md-2 col-lg-2 col-xl-2 ">
+                                            <img src="{{ url_for('static',filename='images/logos/brand1.jpg') }}" id="comment-img" alt="" >
+                                        </div>
+                                        <div class="col-md-10 col-lg-10 col-xl-10">
+                                            <div class="card-body">
+                                               <p style="font-size: 0.8rem;text-align: left;padding: 0;margin: 0;" >{{ comment.comment }}</p>
+{#                                                     <span style="font-size: 0.4rem;padding: 0;margin: 0;line-height: 0;text-align: left">like</span>#}
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-                                {% endfor %}
-                           {% endif %}
-
-                        <form action="{{ url_for('comment') }}" method="post">
+                            </div>
+                            {% endfor %}
+                       {% endif %}
+                    </div>
+                       <form action="{{ url_for('comment') }}" method="post">
+                           <span>Comment(s)  <i class="badge badge-danger">{{ count_comments }}</i></span>
                             <fieldset>
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="comment" placeholder="leave a comment...">
@@ -119,14 +125,10 @@
                                 </div>
                             </fieldset>
                         </form>
-                    </div>
                    </div>
                </div>
-                <div class="card" style="margin-top: 5px;">
-                    <iframe width="724" height="400" src="{{project.youtube}}" frameborder="0" allowfullscreen class="img-card"></iframe>
-               </div>
+
             </div>
         </div>
-    </div>
 </section>
 {% endblock body %}
