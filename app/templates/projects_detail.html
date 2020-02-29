@@ -98,16 +98,23 @@
                        <div class="row">
                            {% if comments %}
                             {% for comment in comments %}
-                            <div class="col-md-10 col-lg-10 col-xl-10" style="margin-bottom: 1rem">
+                            <div class="col-md-12 col-lg-12 col-xl-12" style="margin-bottom: 1rem">
                                 <div class="card">
                                     <div class="row">
-                                        <div class="col-md-2 col-lg-2 col-xl-2 ">
-                                            <img src="{{ url_for('static',filename='images/logos/brand1.jpg') }}" id="comment-img" alt="" >
+                                        <div class="col-md-2 col-lg-2 col-xl-2 img-top">
+                                            <img src="/{{ project.image_file}}" id="comment-img" alt="" >
+
                                         </div>
-                                        <div class="col-md-10 col-lg-10 col-xl-10">
-                                            <div class="card-body">
-                                               <p style="font-size: 0.8rem;text-align: left;padding: 0;margin: 0;" >{{ comment.comment }}</p>
-{#                                                     <span style="font-size: 0.4rem;padding: 0;margin: 0;line-height: 0;text-align: left">like</span>#}
+                                        <div class="col-md-10 col-lg-10 col-xl-10 section-comment">
+                                            <div class="card-body ">
+                                               <p style="font-size: 0.8rem;text-align: left;padding: 0;margin: 0;" >
+                                                   {{ comment.comment }}
+                                                   {% if current_user.is_authenticated %}
+                                                        <span class="delete" style=""> <a href="{{ url_for('comment_delete', comment_id=comment.id, project_id=project.id) }}" >Delete</a></span>
+                                                   {% endif %}
+
+                                               </p>
+
                                             </div>
                                         </div>
                                     </div>
@@ -116,13 +123,15 @@
                             {% endfor %}
                        {% endif %}
                     </div>
+
                        <form action="{{ url_for('comment') }}" method="post">
                            <span>Comment(s)  <i class="badge badge-danger">{{ count_comments }}</i></span>
                             <fieldset>
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="comment" placeholder="leave a comment...">
                                     <input type="number" hidden name="project_id" value="{{ project.id }}">
-                                    <button class="btn btn-danger btn-block">Comment</button>
+                                    <br>
+                                    <button class="btn btn-danger btn-bg">Comment</button>
                                 </div>
                             </fieldset>
                         </form>

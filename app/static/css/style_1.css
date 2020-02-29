@@ -266,13 +266,44 @@ body{
 #comments{
     padding-top: 3px;
     padding-left: 3px;
+
 }
+#comments .card{
+    padding: 0;
+    text-align: left;
+    border-radius: 20px;
+    border: transparent;
+    color: #d9534f;
+    background-color: rgba(255, 182, 174, 0.09);
+
+}
+/*#comment-img{*/
+/*    height: 40px;*/
+/*    width: 40px;*/
+/*    padding: 0;*/
+/*    margin: 2px;*/
+/*    border: 2px solid red;*/
+/*      background-color: green;*/
+
+/*}*/
 #comment-img{
     height: 40px;
     width: 40px;
     padding: 0;
     margin: 2px;
-    border: 2px solid red
+    border: 2px solid red;
+    border-radius: 50%;
+
+}
+#comments .img-top{
+
+    text-align: left;
+    padding-left:30px;
+    padding-top:12px
+
+}
+#comments .delete{
+    text-decoration-line: underline;
 }
 /*Start projects section*/
 

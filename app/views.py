@@ -304,6 +304,15 @@ def comment():
     return redirect(url_for('projects_detail', project_id=project_id))
 
 
+@app.route('/comment/delete/<int:comment_id>/<int:project_id>', methods=['GET','POST'])
+def comment_delete(comment_id,project_id):
+    comment = Comment.query.get(comment_id)
+    db.session.delete(comment)
+    db.session.commit()
+    return redirect(url_for('projects_detail', project_id=project_id))
+
+
+
 
 
 @app.errorhandler(404)
