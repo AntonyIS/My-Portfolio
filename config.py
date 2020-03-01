@@ -21,7 +21,7 @@ class Config:
 
 
 
-    ENV = 'dev'
+    ENV = 'prod'
 
     if ENV == 'dev':
         debug = True
