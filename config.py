@@ -10,9 +10,6 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOAD_FOLDER = os.path.join(base_dir+'/app/static/images/uploads')
 
-<<<<<<< HEAD
-=======
-
 
     MAIL_SERVER= 'smtp.gmail.com',
     MAIL_PORT=465,
@@ -22,9 +19,6 @@ class Config:
     MAIL_PASSWORD='GEOgraphy001'
 
 
-
-
->>>>>>> feature-email
     ENV = 'prod'
 
     if ENV == 'dev':
