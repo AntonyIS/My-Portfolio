@@ -1,5 +1,5 @@
 import os
-from flask_mail import Mail, Message
+
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 from datetime import datetime
