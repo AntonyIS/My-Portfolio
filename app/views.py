@@ -3,6 +3,7 @@ from app.models import User, Project,Comment, db
 from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, redirect, flash, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
+
 import os
 from app import Config
 
@@ -13,6 +14,8 @@ from app import Config
 def load_user(user_id):
     # since the user_id is just the primary key of our user table, use it in the query for the user
     return User.query.get(int(user_id))
+
+
 
 @app.route('/')
 def index():
@@ -312,6 +315,18 @@ def comment_delete(comment_id,project_id):
     return redirect(url_for('projects_detail', project_id=project_id))
 
 
+# Sennding an Email
+@app.route('/send-email', methods=['POST','GET'])
+def email():
+    if request.form['email']:
+        msg = Message(request.form['subject'],sender=request.form['email'], recipients=['antonyshikubu@gmail.com'])
+
+        msg.body = "Sent by :\n{}\n{}".format(request.form['email'],request.form['body'])
+        mail.send(msg)
+        return redirect(url_for('index'))
+    else:
+        flash("please emter your email Address")
+        return redirect(url_for('index'))
 
 
 
