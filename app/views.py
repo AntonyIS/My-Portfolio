@@ -318,16 +318,15 @@ def comment_delete(comment_id,project_id):
 # Sennding an Email
 @app.route('/send-email', methods=['POST','GET'])
 def email():
+    if request.form['email']:
+        msg = Message(request.form['subject'],sender=request.form['email'], recipients=['antonyshikubu@gmail.com'])
 
-    # msg = Message(request.form['subject'], sender=request.form['email'], recipients=['antonyshikubu@gmail.com'])
-    # msg.body = """
-    #      From: %s <%s>
-    #      %s
-    #      """ % (request.form['email'], request.form['email'], request.form['body'])
-    msg = Message(request.form['subject'],sender=request.form['email'],recipients=["tinjilaantony@email.com"])
-    msg.body = request.form['body']
-    mail.send(msg)
-    return redirect(url_for('index'))
+        msg.body = "Sent by :\n{}\n{}".format(request.form['email'],request.form['body'])
+        mail.send(msg)
+        return redirect(url_for('index'))
+    else:
+        flash("please emter your email Address")
+        return redirect(url_for('index'))
 
 
 
