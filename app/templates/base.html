@@ -40,7 +40,7 @@
                             <a class="nav-link" href="{{ url_for('about') }}">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('feedback') }}">Services</a>
+                            <a class="nav-link" href="{{ url_for('courses') }}">Courses</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('projects') }}">Projects</a>
@@ -95,6 +95,17 @@
                         <div class="footer-contact">
                             <form action="{{ url_for('email') }}" method="post">
                                <fieldset>
+                                   {% with messages = get_flashed_messages(with_categories=true) %}
+                                          {% if messages %}
+                                            <div id="flash" role="alert">
+                                                 <ul class='flashes' style="list-style-type: none">
+                                                {% for category, message in messages %}
+                                                  <li class="{{ category }}">{{ message }}</li>
+                                                {% endfor %}
+                                                </ul>
+                                            </div>
+                                          {% endif %}
+                                    {% endwith %}
                                     <h5 class="social-media">Send me an email...</h5>
                                    <div class="form-group">
                                         <label for="">Subject</label>

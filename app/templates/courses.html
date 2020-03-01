@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+{% block body %}
+    <section id="feedback">
+        <div class="container">
+            <div id="feedback-style">
+                <div class="jumbotron">
+                    <h4>Courses comming soon</h4>
+                    <p class="lead">Soon i will be teaching programming languages(<span style="font-weight: bold">Python, JavaScript,Php, Kotlin</span>)
+                        and their respective frameworks such as <span style="font-weight: bold">Django, Flask, Node & Express js, React js and  Android Development using Kotlin</span>.</p>
+
+                    <a href="{{url_for('resume')}}" class="btn btn-outline-danger" target="_blank">View Resume</a>
+                    <a href="{{ url_for('index') }}">Go Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock body %}

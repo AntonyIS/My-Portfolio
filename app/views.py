@@ -323,11 +323,16 @@ def email():
 
         msg.body = "Sent by :\n{}\n{}".format(request.form['email'],request.form['body'])
         mail.send(msg)
+        flash('Email received', 'alert alert-danger alert-dismissible fade show')
         return redirect(url_for('index'))
     else:
-        flash("please emter your email Address")
+        flash("please enter your email Address")
         return redirect(url_for('index'))
 
+
+@app.route('/courses')
+def courses():
+    return render_template('courses.html',  title='Antony Injila | Courses')
 
 
 @app.errorhandler(404)
